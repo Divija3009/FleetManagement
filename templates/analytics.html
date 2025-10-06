@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .navbar {
+            background-color: #120237;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 100px; /* Ensure there is space below the navbar */
+        }
+    
+        .navbar h1 {
+            margin: 0;
+        }
+    
+        /* Updated .chart-container for better centering, size, and top spacing */
+        .chart-container {
+            width: 600px; /* Increased width */
+            height: 400px; /* Increased height */
+            margin: 40px auto 20px; /* Added top margin, centered horizontally, added bottom margin */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex; /* Flex display to center the canvas */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+    
+        canvas {
+            width: 100% !important; /* Ensure the canvas fills the container */
+            height: 100% !important; /* Ensure the canvas fills the container */
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="navbar">
+        <h1>Analytics Dashboard</h1>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="distanceChart"></canvas>
+        
+    </div>
+
+    <script>
+        fetch('/distance-travelled')
+            .then(response => response.json())
+            .then(data => {
+                renderDistanceChart(data);
+            });
+
+        function renderDistanceChart(data) {
+            var ctx = document.getElementById('distanceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Trips',
+                        data: data.trips,
+                        backgroundColor: '#023712' // Specific color
+                    }]
+                },
+                options: {
+                    
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { // Configuring X-axis
+                    title: {
+                        display: true,
+                        text: 'Vehicle ID', // X-axis label
+                        font: {
+                            size: 16
+                        }
+                    }
+                },
+                y: { // Configuring Y-axis
+                    title: {
+                        display: true,
+                        text: 'Total Trips', // Y-axis label
+                        font: {
+                            size: 16
+                        }
+                    }
+                }
+            },
+                    title: {
+                        display: true,
+                        text: 'Distance Travelled by Day'
+                    },
+                    responsive: true, // Ensure responsiveness
+                    maintainAspectRatio: false // Maintain aspect ratio based on parent container
+                }
+            });
+        }
+    </script>
+</body>
+</html>
