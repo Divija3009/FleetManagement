@@ -17,17 +17,26 @@ This project highlights advanced concepts in **Programming**, **Cloud integratio
 ```bash
 git clone https://github.com/Divija3009/FleetTrack.git
 cd FleetTrack
+```
 ### 2. Create and Activate a Virtual Environment
+```bash
 python -m venv venv
 venv\Scripts\activate     # Windows
 source venv/bin/activate  # macOS/Linux
+```
 ### 3. Install Dependencies
+```
 pip install -r requirements.txt
+```
 ### 4. Configure Databases 
 Set up a MySQL instance and update credentials in mysqldata.py.
 Optionally configure MongoDB Atlas for telemetry storage.
 ### 5. Run the Application
+```
 python main.py
+```
 ### 6. Start CARLA Simulator 
+```
 python maincarla.py
+```
 
