@@ -8,8 +8,7 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-# client = MongoClient('mongodb://localhost:27017/')
-client = MongoClient('mongodb+srv://sayali:k8qfDNzKHE5JOqt5@avfleetcluster.p0ttflr.mongodb.net/?retryWrites=true&w=majority&appName=AVFleetCluster')
+client = MongoClient('mongodb://localhost:27017/')
 db = client['AVFleetRealTime']
 
 @app.route('/tripsCountPerVehicle')
